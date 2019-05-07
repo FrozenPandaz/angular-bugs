@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "awefkjalnewfawef",
+  "title": "test",
+  "description": "test",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": true,
+  "additionalItems": true
+}
