@@ -1,0 +1,18 @@
+{
+  "npmScope": "v8app",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "v8app": {
+      "tags": []
+    },
+    "v8app-e2e": {
+      "tags": []
+    }
+  }
+}

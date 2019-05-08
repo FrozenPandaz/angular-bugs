@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
     "v8app": {
       "projectType": "application",
@@ -10,24 +10,24 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/v8app",
+      "sourceRoot": "apps/v8app/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/v8app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/v8app",
+            "index": "apps/v8app/src/index.html",
+            "main": "apps/v8app/src/main.ts",
+            "polyfills": "apps/v8app/src/polyfills.ts",
+            "tsConfig": "apps/v8app/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/v8app/src/favicon.ico",
+              "apps/v8app/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/v8app/src/styles.scss"
             ],
             "scripts": []
           },
@@ -35,8 +35,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/v8app/src/environments/environment.ts",
+                  "with": "apps/v8app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -78,16 +78,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/v8app/src/test.ts",
+            "polyfills": "apps/v8app/src/polyfills.ts",
+            "tsConfig": "apps/v8app/tsconfig.spec.json",
+            "karmaConfig": "apps/v8app/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/v8app/src/favicon.ico",
+              "apps/v8app/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "apps/v8app/src/styles.scss"
             ],
             "scripts": []
           }
@@ -96,25 +96,62 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/v8app/tsconfig.app.json",
+              "apps/v8app/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
         },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/v8app-server",
+            "main": "apps/v8app/src/main.server.ts",
+            "tsConfig": "apps/v8app/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/v8app/src/environments/environment.ts",
+                  "with": "apps/v8app/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "v8app-e2e": {
+      "projectType": "application",
+      "root": "apps/v8app-e2e",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "apps/v8app-e2e/protractor.conf.js",
             "devServerTarget": "v8app:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "v8app:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/v8app-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
