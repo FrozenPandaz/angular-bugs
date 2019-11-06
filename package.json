@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prerender": "ng build && ng run ng8-app:server && node ./main.js",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
